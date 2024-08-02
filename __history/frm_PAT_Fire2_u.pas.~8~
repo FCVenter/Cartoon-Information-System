@@ -1,0 +1,123 @@
+unit frm_PAT_Fire2_u;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.GIFImg,
+  Vcl.ExtCtrls;
+
+type
+  TfrmFire = class(TForm)
+    btnBack: TButton;
+    tFire: TImage;
+    lstFire: TListBox;
+    tZuko: TImage;
+    tAzula: TImage;
+    tIroh: TImage;
+    tKorraF: TImage;
+    tAangF: TImage;
+    tOzai: TImage;
+    procedure FormCreate(Sender: TObject);
+    procedure btnBackClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmFire: TfrmFire;
+
+implementation
+
+{$R *.dfm}
+
+uses frmPAT_u;
+
+procedure TfrmFire.btnBackClick(Sender: TObject);
+begin
+  (tFire.Picture.Graphic as TGIFImage).Animate := False;
+  frmLogin.Show;
+  frmFire.Hide;
+
+
+end;
+
+procedure TfrmFire.FormActivate(Sender: TObject);
+begin
+  (tFire.Picture.Graphic as TGIFImage).Animate := True;
+
+
+end;
+
+procedure TfrmFire.FormCreate(Sender: TObject);
+var
+  iRight : integer;
+begin
+  BorderStyle := bsNone;
+  WindowState := wsMaximized;
+  frmFire.Top := 0;
+  frmFire.Left := 0;
+  frmFire.Height := screen.Height;
+  frmFire.Width := screen.Width;
+  frmFire.Color := clBlack;
+
+  tFire.Height := 500;
+  tFire.Height:= screen.Height;
+  tFire.Width := 600;
+  iRight := screen.Width - tFire.Width;
+  tFire.Top := 0;
+  tFire.Left := iRight;
+  tFire.Stretch := True;
+   lstFire.Height := screen.Height;
+  lstFire.Width := 600;
+  lstFire.Top := 0;
+  lstFire.Left := screen.Width - tFire.Width - 600;
+
+  tAangW.Stretch := True;
+  tKorraW.Stretch := True;
+  tHama.Stretch := True;
+  tKatara.Stretch := True;
+  tYakone.Stretch := True;
+  tAmon.Stretch := True;
+
+  tAangW.Stretch := True;
+  tKorraW.Stretch := True;
+  tHama.Stretch := True;
+  tKatara.Stretch := True;
+  tYakone.Stretch := True;
+  tAmon.Stretch := True;
+
+  tAangW.Width := 200;
+  tKorraW.Width := 200;
+  tHama.Width := 200;
+  tKatara.Width := 200;
+  tYakone.Width := 200;
+  tAmon.Width := 200;
+
+  tAangW.Height := 200;
+  tKorraW.Height := 200;
+  tHama.Height := 200;
+  tKatara.Height := 200;
+  tYakone.Height := 200;
+  tAmon.Height := 200;
+
+  tAangW.Left := 400;
+  tKorraW.Left := 400;
+  tHama.Left := 100;
+  tKatara.Left := 400;
+  tYakone.Left := 400;
+  tAmon.Left := 100;
+
+  tAangW.Top := 30;
+  tKorraW.Top := tAangW.Top + 230;
+  tHama.Top := tKorraW.Top + 230;
+  tKatara.Top := tKorraW.Top + 230;
+  tYakone.Top := tKatara.Top + 230;
+  tAmon.Top := tKatara.Top + 230;
+
+end;
+
+end.

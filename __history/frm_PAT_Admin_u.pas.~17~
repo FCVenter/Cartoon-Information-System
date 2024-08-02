@@ -1,0 +1,94 @@
+unit frm_PAT_Admin_u;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TfrmAdmin = class(TForm)
+    btnBack: TButton;
+    lblUsers: TLabel;
+    lblElement: TLabel;
+    lblCharacter: TLabel;
+    lblBonus: TLabel;
+    lblGender: TLabel;
+    procedure btnBackClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmAdmin: TfrmAdmin;
+
+implementation
+
+{$R *.dfm}
+
+uses frmPAT_u;
+
+procedure TfrmAdmin.btnBackClick(Sender: TObject);
+begin
+  frmLogin.Show;
+  frmAdmin.Hide;
+end;
+
+procedure TfrmAdmin.FormCreate(Sender: TObject);
+begin
+  BorderStyle := bsNone;
+  WindowState := wsMaximized;
+  frmAdmin.Top := 0;
+  frmAdmin.Left := 0;
+  frmAdmin.Height := screen.Height;
+  frmAdmin.Width := screen.Width;
+  frmAdmin.Color := clBlack;
+  btnBack.Width := 100;
+  btnBack.Height := 50;
+  btnBack.Top := 0;
+  btnBack.Left := screen.Width - btnBack.Width;
+
+  lblUsers.Font.Color := clWhite;
+  lblElement.Font.Color := clWhite;
+  lblCharacter.Font.Color := clWhite;
+  lblBonus.Font.Color := clWhite;
+  lblGender.Font.Color := clWhite;
+
+  lblUsers.Font.Size := 50;
+  lblElement.Font.Size := 50;
+  lblCharacter.Font.Size := 50;
+  lblBonus.Font.Size := 50;
+  lblGender.Font.Size := 50;
+
+  lblUsers.Caption := 'Users logged in today: ';
+  lblBonus.Caption := 'Users who have watched ATLA: ';
+  lblElement.Caption := 'Most visited element today: ';
+  lblCharacter.Caption := 'Most visited character today: ';
+  lblGender.Caption := '% Female: ' + #13 + '% Male: ' + #13 + '% Other: ';
+
+
+  lblUsers.Font.Name := 'Bookman Old Style';
+  lblElement.Font.Name := 'Bookman Old Style';
+  lblCharacter.Font.Name := 'Bookman Old Style';
+  lblBonus.Font.Name := 'Bookman Old Style';
+  lblGender.Font.Name := 'Bookman Old Style';
+
+  lblUsers.Top := 150;
+  lblBonus.Top := lblUsers.Top + 150;
+  lblElement.Top := lblBonus.Top + 150;
+  lblCharacter.Top := lblElement.Top + 150;
+  lblGender.Top := lblCharacter.Top + 150;
+
+
+  lblUsers.Left := 20;
+  lblElement.Left := 20;
+  lblCharacter.Left := 20;
+  lblBonus.Left := 20;
+  lblGender.Left := 615;
+
+end;
+
+end.

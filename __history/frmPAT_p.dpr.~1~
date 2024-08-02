@@ -1,0 +1,14 @@
+program frmPAT_p;
+
+uses
+  Vcl.Forms,
+  frmPAT_u in 'frmPAT_u.pas' {frmLogin};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmLogin, frmLogin);
+  Application.Run;
+end.

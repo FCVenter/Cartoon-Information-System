@@ -1,0 +1,65 @@
+unit frm_PAT_Air_u;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.GIFImg, Vcl.ExtCtrls,
+  Vcl.StdCtrls;
+
+type
+  TfrmAir = class(TForm)
+    btnBack: TButton;
+    tAir: TImage;
+    procedure FormCreate(Sender: TObject);
+    procedure btnBackClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmAir: TfrmAir;
+
+implementation
+
+{$R *.dfm}
+
+uses frmPAT_u;
+
+procedure TfrmAir.btnBackClick(Sender: TObject);
+begin
+  (tAir.Picture.Graphic as TGIFImage).Animate := False;
+  frmLogin.Show;
+  frmAir.Hide;
+end;
+
+procedure TfrmAir.FormActivate(Sender: TObject);
+var
+  iRight : integer;
+begin
+  tAir.Stretch := True;
+  (tAir.Picture.Graphic as TGIFImage).Animate := True;
+  tAir.Height := 500;
+  tAir.Height:= screen.Height;
+  tAir.Width := 600;
+  iRight := screen.Width - tAir.Width;
+  tAir.Top := 0;
+  tAir.Left := iRight;
+
+end;
+
+procedure TfrmAir.FormCreate(Sender: TObject);
+begin
+  BorderStyle := bsNone;
+  WindowState := wsMaximized;
+  frmAir.Top := 0;
+  frmAir.Left := 0;
+  frmAir.Height := screen.Height;
+  frmAir.Width := screen.Width;
+  frmAir.Color := clBlack;
+end;
+
+end.

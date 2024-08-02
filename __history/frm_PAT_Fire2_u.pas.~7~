@@ -1,0 +1,74 @@
+unit frm_PAT_Fire2_u;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.GIFImg,
+  Vcl.ExtCtrls;
+
+type
+  TfrmFire = class(TForm)
+    btnBack: TButton;
+    tFire: TImage;
+    lstFire: TListBox;
+    procedure FormCreate(Sender: TObject);
+    procedure btnBackClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmFire: TfrmFire;
+
+implementation
+
+{$R *.dfm}
+
+uses frmPAT_u;
+
+procedure TfrmFire.btnBackClick(Sender: TObject);
+begin
+  (tFire.Picture.Graphic as TGIFImage).Animate := False;
+  frmLogin.Show;
+  frmFire.Hide;
+
+
+end;
+
+procedure TfrmFire.FormActivate(Sender: TObject);
+begin
+  (tFire.Picture.Graphic as TGIFImage).Animate := True;
+
+
+end;
+
+procedure TfrmFire.FormCreate(Sender: TObject);
+var
+  iRight : integer;
+begin
+  BorderStyle := bsNone;
+  WindowState := wsMaximized;
+  frmFire.Top := 0;
+  frmFire.Left := 0;
+  frmFire.Height := screen.Height;
+  frmFire.Width := screen.Width;
+  frmFire.Color := clBlack;
+
+  tFire.Height := 500;
+  tFire.Height:= screen.Height;
+  tFire.Width := 600;
+  iRight := screen.Width - tFire.Width;
+  tFire.Top := 0;
+  tFire.Left := iRight;
+  tFire.Stretch := True;
+   lstFire.Height := screen.Height;
+  lstFire.Width := 600;
+  lstFire.Top := 0;
+  lstFire.Left := screen.Width - tFire.Width - 600;
+end;
+
+end.

@@ -1,0 +1,80 @@
+unit frm_PAT_Admin_u;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TfrmAdmin = class(TForm)
+    btnBack: TButton;
+    lblUsers: TLabel;
+    lblElement: TLabel;
+    lblCharacter: TLabel;
+    lblBonus: TLabel;
+    procedure btnBackClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmAdmin: TfrmAdmin;
+
+implementation
+
+{$R *.dfm}
+
+uses frmPAT_u;
+
+procedure TfrmAdmin.btnBackClick(Sender: TObject);
+begin
+  frmLogin.Show;
+  frmAdmin.Hide;
+end;
+
+procedure TfrmAdmin.FormCreate(Sender: TObject);
+begin
+  BorderStyle := bsNone;
+  WindowState := wsMaximized;
+  frmAdmin.Top := 0;
+  frmAdmin.Left := 0;
+  frmAdmin.Height := screen.Height;
+  frmAdmin.Width := screen.Width;
+  frmAdmin.Color := clBlue;
+  btnBack.Width := 100;
+  btnBack.Height := 50;
+  btnBack.Top := 0;
+  btnBack.Left := screen.Width - btnBack.Width;
+
+  lblUsers.Font.Color := clWhite;
+  lblElement.Color := clWhite;
+  lblCharacter.Color := clWhite;
+  lblBonus.Color := clWhite;
+
+  lblUsers.Font.Size := 50;
+  lblElement.Font.Size := 50;
+  lblCharacter.Font.Size := 50;
+  lblBonus.Font.Size := 50;
+
+  lblUsers
+  lblElement
+  lblCharacter
+  lblBonus
+
+  lblUsers
+  lblElement
+  lblCharacter
+  lblBonus
+
+  lblUsers
+  lblElement
+  lblCharacter
+  lblBonus
+
+end;
+
+end.

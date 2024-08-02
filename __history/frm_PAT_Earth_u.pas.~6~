@@ -1,0 +1,118 @@
+unit frm_PAT_Earth_u;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.GIFImg,
+  Vcl.ExtCtrls, Vcl.Imaging.jpeg, Vcl.Imaging.pngimage;
+
+type
+  TfrmEarth = class(TForm)
+    btnBack: TButton;
+    tEarth: TImage;
+    lstEarth: TListBox;
+    tBumi: TImage;
+    tKorraE: TImage;
+    tKyoshi: TImage;
+    tAangE: TImage;
+    tToph: TImage;
+    procedure btnBackClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmEarth: TfrmEarth;
+
+implementation
+
+{$R *.dfm}
+
+uses frmPAT_u;
+
+procedure TfrmEarth.btnBackClick(Sender: TObject);
+begin
+  (tEarth.Picture.Graphic as TGIFImage).Animate := False;
+  frmLogin.Show;
+  frmEarth.Hide;
+end;
+
+procedure TfrmEarth.FormActivate(Sender: TObject);
+begin
+  (tEarth.Picture.Graphic as TGIFImage).Animate := True;
+end;
+
+procedure TfrmEarth.FormCreate(Sender: TObject);
+var
+  iRight :integer;
+begin
+  BorderStyle := bsNone;
+  WindowState := wsMaximized;
+  frmEarth.Top := 0;
+  frmEarth.Left := 0;
+  frmEarth.Height := screen.Height;
+  frmEarth.Width := screen.Width;
+  frmEarth.Color := clBlack;
+
+  tEarth.Height := 500;
+  tEarth.Height:= screen.Height;
+  tEarth.Width := 600;
+  iRight := screen.Width - tEarth.Width;
+  tEarth.Top := 0;
+  tEarth.Left := iRight;
+  tEarth.Stretch := True;
+   lstEarth.Height := screen.Height;
+  lstEarth.Width := 600;
+  lstEarth.Top := 0;
+  lstEarth.Left := screen.Width - tEarth.Width - 600;
+
+  tAangF.Stretch := True;
+  tKorraF.Stretch := True;
+  tZuko.Stretch := True;
+  tOzai.Stretch := True;
+  tAzula.Stretch := True;
+  tIroh.Stretch := True;
+
+  tAangF.Stretch := True;
+  tKorraF.Stretch := True;
+  tZuko.Stretch := True;
+  tOzai.Stretch := True;
+  tAzula.Stretch := True;
+  tIroh.Stretch := True;
+
+  tAangF.Width := 200;
+  tKorraF.Width := 200;
+  tZuko.Width := 200;
+  tOzai.Width := 200;
+  tAzula.Width := 200;
+  tIroh.Width := 200;
+
+  tAangF.Height := 200;
+  tKorraF.Height := 200;
+  tZuko.Height := 200;
+  tOzai.Height := 200;
+  tAzula.Height := 200;
+  tIroh.Height := 200;
+
+  tAangF.Left := 400;
+  tKorraF.Left := 400;
+  tZuko.Left := 100;
+  tOzai.Left := 400;
+  tAzula.Left := 400;
+  tIroh.Left := 100;
+
+  tAangF.Top := 30;
+  tKorraF.Top := tAangF.Top + 230;
+  tZuko.Top := tKorraF.Top + 230;
+  tOzai.Top := tKorraF.Top + 230;
+  tAzula.Top := tOzai.Top + 230;
+  tIroh.Top := tOzai.Top + 230;
+
+end;
+
+end.

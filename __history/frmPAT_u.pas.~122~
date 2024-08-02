@@ -1,0 +1,410 @@
+unit frmPAT_u;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, jpeg, Vcl.StdCtrls,
+  Vcl.MPlayer, Vcl.Buttons, Vcl.Menus;
+
+type
+  TfrmLogin = class(TForm)
+    tWater: TImage;
+    tFire: TImage;
+    tEarth: TImage;
+    tAir: TImage;
+    lblAvatar: TLabel;
+    Music: TMediaPlayer;
+    bmbClose: TBitBtn;
+    pnlLogin: TPanel;
+    lblNo: TLabel;
+    lblID: TLabel;
+    lblName: TLabel;
+    lblSurname: TLabel;
+    edtName: TEdit;
+    edtSurname: TEdit;
+    edtNo: TEdit;
+    edtID: TEdit;
+    lblAvatar2: TLabel;
+    chkBonus: TCheckBox;
+    btnContinue: TButton;
+    lblDate: TLabel;
+    MmAdmin: TMainMenu;
+    Login1: TMenuItem;
+    Label1: TLabel;
+    lblGender: TLabel;
+    rgpGender: TRadioGroup;
+    procedure FormCreate(Sender: TObject);
+    procedure tWaterMouseEnter(Sender: TObject);
+    procedure tWaterMouseLeave(Sender: TObject);
+    procedure tAirMouseEnter(Sender: TObject);
+    procedure tAirMouseLeave(Sender: TObject);
+    procedure tFireMouseEnter(Sender: TObject);
+    procedure tFireMouseLeave(Sender: TObject);
+    procedure tEarthMouseEnter(Sender: TObject);
+    procedure tEarthMouseLeave(Sender: TObject);
+    procedure btnContinueClick(Sender: TObject);
+    procedure tWaterClick(Sender: TObject);
+    procedure tFireClick(Sender: TObject);
+    procedure tEarthClick(Sender: TObject);
+    procedure tAirClick(Sender: TObject);
+    procedure Login1Click(Sender: TObject);
+    procedure MusicClick(Sender: TObject; Button: TMPBtnType;
+      var DoDefault: Boolean);
+    procedure FormActivate(Sender: TObject);
+  private
+     OpenMediaDialog : TOpenDialog;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmLogin: TfrmLogin;
+
+implementation
+
+{$R *.dfm}
+
+uses frm_PAT_Water_u, frm_PAT_Fire2_u, frm_PAT_Earth_u, frm_PAT_Air_u,
+  frm_PAT_Admin_u;
+
+procedure TfrmLogin.btnContinueClick(Sender: TObject);
+begin
+  pnlLogin.Hide;
+  tWater.Show;
+  tAir.Show;
+  tFire.Show;
+  tEarth.Show;
+  lblAvatar.Show;
+  btnContinue.Hide;
+  chkBonus.Hide;
+  frmLogin.Color := clBlack;
+  rgpGender.Hide;
+
+end;
+procedure TfrmLogin.FormActivate(Sender: TObject);
+begin
+  Music.OnClick(self);
+end;
+
+procedure TfrmLogin.FormCreate(Sender: TObject);
+var
+  sDate, sDay, sYear, sMonth : string;
+  iDay, iMonth : integer;
+begin
+
+  bmbClose.Height := 50;
+  bmbClose.Width := 100;
+  bmbClose.Left := screen.Width - bmbClose.Width;
+
+  sDate := DateToStr(Date);
+  sDay := Copy(sDate, 9, 2);
+  iMonth := strtoint(Copy(sDate, 6, 2));
+  sYear := Copy(sDate, 1, 4);
+
+  case iMonth of
+    1 : sMonth := 'January';
+    2 : sMonth := 'February';
+    3 : sMonth := 'March';
+    4 : sMonth := 'April';
+    5 : sMonth := 'May';
+    6 : sMonth := 'June' ;
+    7 : sMonth := 'July';
+    8 : sMonth := 'August';
+    9 : sMonth := 'September';
+   10 : sMonth := 'October';
+   11 : sMonth := 'November';
+   12 : sMonth := 'December';
+  end;
+
+  sDate := sDay + ' ' + sMonth + ' ' + sYear;
+
+  lblDate.Caption := sDate;
+  lblDate.Font.Size := 36;
+  lblDate.Font.Name := 'Viner Hand ITC';
+  lblDate.Left := 800;
+  lblDate.Top := 20;
+
+
+  tWater.Hide;
+  tAir.Hide;
+  tFire.Hide;
+  tEarth.Hide;
+  lblAvatar.Hide;
+
+  btnContinue.Width := 180;
+  btnContinue.Height := 80;
+  btnContinue.Left := 850;
+  btnContinue.Top := 430;
+  btnContinue.Font.Size := 26;
+
+  pnlLogin.Left := 0;
+  pnlLogin.Top := 0;
+  pnlLogin.Height := Screen.Height;
+  pnlLogin.Width := Screen.Width;
+  pnlLogin.Brush.Color := clBlack;
+  pnlLogin.Color := clSkyBlue;
+
+  BorderStyle := bsNone;
+  WindowState := wsMaximized;
+  frmLogin.Top := 0;
+  frmLogin.Left := 0;
+  //frmLogin.Height := 720;
+  //frmLogin.Width := 1280;
+  frmLogin.Color := clSkyBlue;
+
+  lblID.Font.Color := clWhite;
+  lblName.Font.Color := clWhite;
+  lblSurname.Font.Color := clWhite;
+  lblNo.Font.Color := clWhite;
+  lblID.Font.Size := 21;
+  lblNo.Font.Size := 21;
+  lblName.Font.Size := 21;
+  lblSurname.Font.Size := 21;
+  lblAvatar2.Font.Size := 21;
+  lblAvatar2.Font.Color := clWhite;
+  lblGender.Font.Color := clWhite;
+  lblGender.Font.Size := 21;
+
+  lblID.Caption := 'Enter your ID:';
+  lblName.Caption := 'Enter your name:';
+  lblSurname.Caption := 'Enter your surname:';
+  lblNo.Caption := 'Enter your phone number:';
+  lblAvatar2.Caption := 'Have you watched "Avatar' + #13 + 'The Last Airbender" ?';
+  lblGender.Caption := 'Gender : ';
+
+  lblName.Left := 50;
+  lblName.Top := 25;
+  lblSurname.Left := 50;
+  lblSurname.Top := lblName.Top + 50;
+  lblID.Left := 50;
+  lblID.Top := lblSurname.Top + 50;
+  lblNo.Left := 50;
+  lblNo.Top := lblID.Top + 50;
+  lblAvatar2.Left := 50;
+  lblAvatar2.Top := lblNo.Top + 50;
+  lblGender.Left := 50;
+  lblGender.Top := lblAvatar2.Top + 135;
+
+  rgpGender.Top := lblGender.Top + 70;
+  rgpGender.Left := 545;
+
+  edtName.Width := 250;
+  edtSurname.Width := 250;
+  edtID.Width := 250;
+  edtNo.Width := 250;
+
+  edtName.Left := 400;
+  edtName.Top := 40;
+  edtSurname.Left := 400;
+  edtSurname.Top := edtName.Top + 50;
+  edtID.Left := 400;
+  edtID.Top := edtSurname.Top + 50;
+  edtNo.Left := 400;
+  edtNo.Top := edtID.Top + 50;
+
+  edtName.ScaleBy(2, 2);
+
+  chkBonus.Left := 550;
+  chkBonus.Top := 310;
+  chkBonus.Font.Size := 15;
+
+
+  tWater.Picture.LoadFromFile('Water.jpg');
+  tFire.Picture.LoadFromFile('Fire.jpg');
+  tEarth.Picture.LoadFromFile('Earth.jpg');
+  tAir.Picture.LoadFromFile('Air.jpg');
+
+  tWater.Stretch := true;
+  tFire.Stretch := true;
+  tEarth.Stretch := true;
+  tAir.Stretch := true;
+
+  tWater.Height := 300;
+  tWater.Width := 300;
+  tWater.Top := 75;
+  tWater.Left := 225;
+
+  tFire.Height := 300;
+  tFire.Width := 300;
+  tFire.Top := 75;
+  tFire.Left := 900;
+
+  tEarth.Height := 300;
+  tEarth.Width := 300;
+  tEarth.Top := 450;
+  tEarth.Left := 225;
+
+  tAir.Height := 300;
+  tAir.Width := 300;
+  tAir.Top := 450;
+  tAir.Left := 900;
+
+  lblAvatar.Caption := 'Avatar';
+  lblAvatar.Font.Name := 'Viner Hand ITC';
+  lblAvatar.Font.Color := clWhite;
+  lblAvatar.Font.Size := 100;
+  lblAvatar.Left := 480;
+  lblAvatar.Top := 320;
+
+
+
+
+
+
+
+
+
+
+
+end;
+
+procedure TfrmLogin.Login1Click(Sender: TObject);
+var
+  sUsername, sPassword, sLine, sCorrectUsername, sCorrectPassword : string;
+  tFile : Textfile;
+  iPos : integer;
+begin
+  sUsername := Inputbox('Admin', 'Username:', 'Dejon');
+  sPassword := Inputbox('Admin', 'Password:', 'ItsOver9000!');
+
+  if (FileExists('Admin.txt') = False) then
+    begin
+      MessageDlg('File Does not Exist',mtCustom, mbOKCancel,0);
+      Exit;
+    end;
+
+ AssignFile(tFile, 'Admin.txt');
+
+ Reset(tFile);
+
+ while NOT EOF(tFile) do
+ Begin
+  Readln(tFile, sLine);
+  iPos := Pos('#', sLine);
+  sCorrectUsername := Copy(sLine, 1, iPos - 1);
+  Delete(sLine, 1, iPos);
+
+  sCorrectPassword := Copy(sLine, 1, Length(sLine));
+
+  if sUsername = sCorrectUsername then
+      begin
+        if sPassword = sCorrectPassword then
+          begin
+            frmAdmin.Show;
+            frmLogin.Hide;
+          end
+            else begin
+             MessageDlg('Wrong username/password', mtError, mbOKCancel, 0);
+             Exit;
+            end;
+
+      end
+        else begin
+          MessageDlg('Wrong username/password', mtError, mbOKCancel, 0);
+          Exit;
+        end;
+
+ End;
+
+
+end;
+
+procedure TfrmLogin.MusicClick(Sender: TObject; Button: TMPBtnType;
+  var DoDefault: Boolean);
+begin
+  Music.FileName := 'End Credits.mp3';
+  Music.Open;
+  Music.DeviceType := dtAutoSelect;
+end;
+
+procedure TfrmLogin.tAirClick(Sender: TObject);
+begin
+  frmAir.Show;
+  frmLogin.Hide;
+end;
+
+procedure TfrmLogin.tAirMouseEnter(Sender: TObject);
+begin
+  tAir.Height := 380;
+  tAir.Width := 380;
+  tAir.Top := 430;
+  tAir.Left := 880;
+end;
+
+procedure TfrmLogin.tAirMouseLeave(Sender: TObject);
+begin
+  tAir.Height := 300;
+  tAir.Width := 300;
+  tAir.Top := 450;
+  tAir.Left := 900;
+end;
+
+procedure TfrmLogin.tEarthClick(Sender: TObject);
+begin
+  frmEarth.Show;
+  frmLogin.Hide;
+end;
+
+procedure TfrmLogin.tEarthMouseEnter(Sender: TObject);
+begin
+  tEarth.Height := 380;
+  tEarth.Width := 380;
+  tEarth.Top := 430;
+  tEarth.Left := 205;
+end;
+
+procedure TfrmLogin.tEarthMouseLeave(Sender: TObject);
+begin
+  tEarth.Height := 300;
+  tEarth.Width := 300;
+  tEarth.Top := 450;
+  tEarth.Left := 225;
+end;
+
+procedure TfrmLogin.tFireClick(Sender: TObject);
+begin
+  frmFire.Show;
+  frmLogin.Hide;
+end;
+
+procedure TfrmLogin.tFireMouseEnter(Sender: TObject);
+begin
+  tFire.Height := 380;
+  tFire.Width := 380;
+  tFire.Top := 55;
+  tFire.Left := 880;
+end;
+
+procedure TfrmLogin.tFireMouseLeave(Sender: TObject);
+begin
+  tFire.Height := 300;
+  tFire.Width := 300;
+  tFire.Top := 75;
+  tFire.Left := 900;
+end;
+
+procedure TfrmLogin.tWaterClick(Sender: TObject);
+begin
+  frmWater.Show;
+  frmLogin.Hide;
+
+end;
+
+procedure TfrmLogin.tWaterMouseEnter(Sender: TObject);
+begin
+  tWater.Height := 380;
+  tWater.Width := 380;
+  tWater.Top := 55;
+  tWater.Left := 205;
+end;
+
+procedure TfrmLogin.tWaterMouseLeave(Sender: TObject);
+begin
+  tWater.Height := 300;
+  tWater.Width := 300;
+  tWater.Top := 75;
+  tWater.Left := 225;
+end;
+
+end.

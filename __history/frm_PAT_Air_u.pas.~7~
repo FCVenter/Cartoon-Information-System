@@ -1,0 +1,113 @@
+unit frm_PAT_Air_u;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.GIFImg, Vcl.ExtCtrls,
+  Vcl.StdCtrls, Vcl.Imaging.jpeg, Vcl.Imaging.pngimage;
+
+type
+  TfrmAir = class(TForm)
+    btnBack: TButton;
+    tAir: TImage;
+    lstAir: TListBox;
+    tZaheer: TImage;
+    tJinora: TImage;
+    tTenzin: TImage;
+    tBumi: TImage;
+    tKorraA: TImage;
+    tAangA: TImage;
+    procedure FormCreate(Sender: TObject);
+    procedure btnBackClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmAir: TfrmAir;
+
+implementation
+
+{$R *.dfm}
+
+uses frmPAT_u;
+
+procedure TfrmAir.btnBackClick(Sender: TObject);
+begin
+  (tAir.Picture.Graphic as TGIFImage).Animate := False;
+  frmLogin.Show;
+  frmAir.Hide;
+end;
+
+procedure TfrmAir.FormActivate(Sender: TObject);
+begin
+  (tAir.Picture.Graphic as TGIFImage).Animate := True;
+
+end;
+
+procedure TfrmAir.FormCreate(Sender: TObject);
+var
+  iRight : integer;
+begin
+  BorderStyle := bsNone;
+  WindowState := wsMaximized;
+  frmAir.Top := 0;
+  frmAir.Left := 0;
+  frmAir.Height := screen.Height;
+  frmAir.Width := screen.Width;
+  frmAir.Color := clBlack;
+
+  tAir.Height := 500;
+  tAir.Height:= screen.Height;
+  tAir.Width := 600;
+  iRight := screen.Width - tAir.Width;
+  tAir.Top := 0;
+  tAir.Left := iRight;
+  tAir.Stretch := True;
+   lstAir.Height := screen.Height;
+  lstAir.Width := 600;
+  lstAir.Top := 0;
+  lstAir.Left := screen.Width - tAir.Width - 600;
+
+  tAangA.Stretch := True;
+  tKorraA.Stretch := True;
+  tBumi.Stretch := True;
+  tTenzin.Stretch := True;
+  tJinora.Stretch := True;
+  tZaheer.Stretch := True;
+
+  tAangA.Width := 200;
+  tKorraA.Width := 200;
+  tBumi.Width := 200;
+  tTenzin.Width := 200;
+  tJinora.Width := 200;
+  tZaheer.Width := 200;
+
+  tAangA.Height := 200;
+  tKorraA.Height := 200;
+  tBumi.Height := 200;
+  tTenzin.Height := 200;
+  tJinora.Height := 200;
+  tZaheer.Height := 200;
+
+  tAangA.Left := 400;
+  tKorraA.Left := 400;
+  tBumi.Left := 100;
+  tTenzin.Left := 400;
+  tJinora.Left := 400;
+  tZaheer.Left := 100;
+
+  tAangA.Top := 30;
+  tKorraA.Top := tAangA.Top + 230;
+  tBumi.Top := tKorraA.Top + 230;
+  tTenzin.Top := tKorraA.Top + 230;
+  tJinora.Top := tTenzin.Top + 230;
+  tZaheer.Top := tTenzin.Top + 230;
+
+end;
+
+end.

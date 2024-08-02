@@ -1,0 +1,110 @@
+unit frm_PAT_Earth_u;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.GIFImg,
+  Vcl.ExtCtrls, Vcl.Imaging.jpeg, Vcl.Imaging.pngimage;
+
+type
+  TfrmEarth = class(TForm)
+    btnBack: TButton;
+    tEarth: TImage;
+    lstEarth: TListBox;
+    tBumi: TImage;
+    tKorraE: TImage;
+    tKyoshi: TImage;
+    tAangE: TImage;
+    tToph: TImage;
+    tKuvira: TImage;
+    procedure btnBackClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmEarth: TfrmEarth;
+
+implementation
+
+{$R *.dfm}
+
+uses frmPAT_u;
+
+procedure TfrmEarth.btnBackClick(Sender: TObject);
+begin
+  (tEarth.Picture.Graphic as TGIFImage).Animate := False;
+  frmLogin.Show;
+  frmEarth.Hide;
+end;
+
+procedure TfrmEarth.FormActivate(Sender: TObject);
+begin
+  (tEarth.Picture.Graphic as TGIFImage).Animate := True;
+end;
+
+procedure TfrmEarth.FormCreate(Sender: TObject);
+var
+  iRight :integer;
+begin
+  BorderStyle := bsNone;
+  WindowState := wsMaximized;
+  frmEarth.Top := 0;
+  frmEarth.Left := 0;
+  frmEarth.Height := screen.Height;
+  frmEarth.Width := screen.Width;
+  frmEarth.Color := clBlack;
+
+  tEarth.Height := 500;
+  tEarth.Height:= screen.Height;
+  tEarth.Width := 600;
+  iRight := screen.Width - tEarth.Width;
+  tEarth.Top := 0;
+  tEarth.Left := iRight;
+  tEarth.Stretch := True;
+   lstEarth.Height := screen.Height;
+  lstEarth.Width := 600;
+  lstEarth.Top := 0;
+  lstEarth.Left := screen.Width - tEarth.Width - 600;
+
+  tAangE.Stretch := True;
+  tKorraE.Stretch := True;
+  tBumi.Stretch := True;
+  tKyoshi.Stretch := True;
+  tToph.Stretch := True;
+  tKuvira.Stretch := True;
+
+  tAangE.Width := 200;
+  tKorraE.Width := 200;
+  tBumi.Width := 200;
+  tKyoshi.Width := 200;
+  tToph.Width := 200;
+  tKuvira.Width := 200;
+
+  tAangE.Height := 200;
+  tKorraE.Height := 200;
+  tBumi.Height := 200;
+  tKyoshi.Height := 200;
+  tToph.Height := 200;
+  tKuvira.Height := 200;
+
+  tAangE.Left := 400;
+  tKorraE.Left := 400;
+  tBumi.Left := 100;
+  tKyoshi.Left := 400;
+  tToph.Left := 400;
+
+  tAangE.Top := 30;
+  tKorraE.Top := tAangE.Top + 230;
+  tBumi.Top := tKyoshi.Top + 305;
+  tKyoshi.Top := tKorraE.Top + 230;
+  tToph.Top := tKyoshi.Top + 230;
+
+end;
+
+end.

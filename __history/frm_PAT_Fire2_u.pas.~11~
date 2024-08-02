@@ -1,0 +1,142 @@
+unit frm_PAT_Fire2_u;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Imaging.GIFImg,
+  Vcl.ExtCtrls, Vcl.Imaging.pngimage, Vcl.Imaging.jpeg;
+
+type
+  TfrmFire = class(TForm)
+    btnBack: TButton;
+    tFire: TImage;
+    lstFire: TListBox;
+    tZuko: TImage;
+    tAzula: TImage;
+    tIroh: TImage;
+    tKorraF: TImage;
+    tAangF: TImage;
+    tOzai: TImage;
+    procedure FormCreate(Sender: TObject);
+    procedure btnBackClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure tAangFMouseEnter(Sender: TObject);
+    procedure tAangFMouseLeave(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmFire: TfrmFire;
+
+implementation
+
+{$R *.dfm}
+
+uses frmPAT_u;
+
+procedure TfrmFire.btnBackClick(Sender: TObject);
+begin
+  (tFire.Picture.Graphic as TGIFImage).Animate := False;
+  frmLogin.Show;
+  frmFire.Hide;
+
+
+end;
+
+procedure TfrmFire.FormActivate(Sender: TObject);
+begin
+  (tFire.Picture.Graphic as TGIFImage).Animate := True;
+
+
+end;
+
+procedure TfrmFire.FormCreate(Sender: TObject);
+var
+  iRight : integer;
+begin
+  BorderStyle := bsNone;
+  WindowState := wsMaximized;
+  frmFire.Top := 0;
+  frmFire.Left := 0;
+  frmFire.Height := screen.Height;
+  frmFire.Width := screen.Width;
+  frmFire.Color := clBlack;
+
+  tFire.Height := 500;
+  tFire.Height:= screen.Height;
+  tFire.Width := 600;
+  iRight := screen.Width - tFire.Width;
+  tFire.Top := 0;
+  tFire.Left := iRight;
+  tFire.Stretch := True;
+   lstFire.Height := screen.Height;
+  lstFire.Width := 600;
+  lstFire.Top := 0;
+  lstFire.Left := screen.Width - tFire.Width - 600;
+
+  tAangF.Stretch := True;
+  tKorraF.Stretch := True;
+  tZuko.Stretch := True;
+  tOzai.Stretch := True;
+  tAzula.Stretch := True;
+  tIroh.Stretch := True;
+
+  tAangF.Stretch := True;
+  tKorraF.Stretch := True;
+  tZuko.Stretch := True;
+  tOzai.Stretch := True;
+  tAzula.Stretch := True;
+  tIroh.Stretch := True;
+
+  tAangF.Width := 200;
+  tKorraF.Width := 200;
+  tZuko.Width := 200;
+  tOzai.Width := 200;
+  tAzula.Width := 200;
+  tIroh.Width := 200;
+
+  tAangF.Height := 200;
+  tKorraF.Height := 200;
+  tZuko.Height := 200;
+  tOzai.Height := 200;
+  tAzula.Height := 200;
+  tIroh.Height := 200;
+
+  tAangF.Left := 400;
+  tKorraF.Left := 400;
+  tZuko.Left := 100;
+  tOzai.Left := 400;
+  tAzula.Left := 400;
+  tIroh.Left := 100;
+
+  tAangF.Top := 30;
+  tKorraF.Top := tAangF.Top + 230;
+  tZuko.Top := tKorraF.Top + 230;
+  tOzai.Top := tKorraF.Top + 230;
+  tAzula.Top := tOzai.Top + 230;
+  tIroh.Top := tOzai.Top + 230;
+
+end;
+
+procedure TfrmFire.tAangFMouseEnter(Sender: TObject);
+begin
+  tAangF.Width := 220;
+  tAangF.Height := 220;
+  tAangF.Left := 390;
+  tAangF.Top := 20;
+end;
+
+procedure TfrmFire.tAangFMouseLeave(Sender: TObject);
+begin
+  tAangF.Width := 200;
+  tAangF.Height := 200;
+  tAangF.Left := 400;
+  tAangF.Top := 30;
+
+end;
+
+end.

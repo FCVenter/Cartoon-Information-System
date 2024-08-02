@@ -1,0 +1,115 @@
+unit frm_PAT_Water_u;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, GIFImg, jpeg, pngimage;
+
+type
+  TfrmWater = class(TForm)
+    btnBack: TButton;
+    tWater: TImage;
+    lstWater: TListBox;
+    tKorraW: TImage;
+    tAmon: TImage;
+    tAangW: TImage;
+    tYakone: TImage;
+    tKatara: TImage;
+    tHama: TImage;
+    procedure FormCreate(Sender: TObject);
+    procedure btnBackClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmWater: TfrmWater;
+
+implementation
+
+{$R *.dfm}
+
+uses frmPAT_u;
+
+procedure TfrmWater.btnBackClick(Sender: TObject);
+begin
+  (tWater.Picture.Graphic as TGIFImage).Animate := False;
+  frmLogin.Show;
+  frmWater.Hide;
+
+end;
+
+procedure TfrmWater.FormActivate(Sender: TObject);
+begin
+  (tWater.Picture.Graphic as TGIFImage).Animate := True;
+
+end;
+
+procedure TfrmWater.FormCreate(Sender: TObject);
+var iRight : integer;
+begin
+  BorderStyle := bsNone;
+  WindowState := wsMaximized;
+  frmWater.Top := 0;
+  frmWater.Left := 0;
+  frmWater.Height := screen.Height;
+  frmWater.Width := screen.Width;
+  frmWater.Color := clBlack;
+
+
+  tWater.Height := 500;
+  tWater.Height:= screen.Height;
+  tWater.Width := 600;
+  iRight := screen.Width - tWater.Width;
+  tWater.Top := 0;
+  tWater.Left := iRight;
+  tWater.Stretch := True;
+   lstWater.Height := screen.Height;
+  lstWater.Width := 600;
+  lstWater.Top := 0;
+  lstWater.Left := screen.Width - tWater.Width - 600;
+
+  tAangW.Stretch := True;
+  tKorraW.Stretch := True;
+  tHama.Stretch := True;
+  tKatara.Stretch := True;
+  tYakone.Stretch := True;
+  tAmon.Stretch := True;
+
+  tAangW.Width := 200;
+  tKorraW.Width := 200;
+  tHama.Width := 200;
+  tKatara.Width := 200;
+  tYakone.Width := 200;
+  tAmon.Width := 200;
+
+  tAangW.Height := 200;
+  tKorraW.Height := 200;
+  tHama.Height := 200;
+  tKatara.Height := 200;
+  tYakone.Height := 200;
+  tAmon.Height := 200;
+
+  tAangW.Left := 400;
+  tKorraW.Left := 400;
+  tHama.Left := 100;
+  tKatara.Left := 400;
+  tYakone.Left := 400;
+  tAmon.Left := 100;
+
+  tAangW.Top := 30;
+  tKorraW.Top := tAangW.Top + 230;
+  tHama.Top := tKorraW.Top + 230;
+  tKatara.Top := tKorraW.Top + 230;
+  tYakone.Top := tKatara.Top + 230;
+  tAmon.Top := tKatara.Top + 230;
+
+
+
+end;
+
+end.

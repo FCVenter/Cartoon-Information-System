@@ -1,0 +1,18 @@
+program frmPAT_p;
+
+uses
+  Vcl.Forms,
+  frmPAT_u in 'frmPAT_u.pas' {frmLogin},
+  frm_PAT_Water_u in 'frm_PAT_Water_u.pas' {frmWater},
+  frm_PAT_Fire2_u in 'frm_PAT_Fire2_u.pas' {frmFire};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmLogin, frmLogin);
+  Application.CreateForm(TfrmWater, frmWater);
+  Application.CreateForm(TfrmFire, frmFire);
+  Application.Run;
+end.
